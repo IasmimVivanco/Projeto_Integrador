@@ -23,6 +23,14 @@ namespace BelMob.Core.Entidades
             Conta = conta;
         }
 
+        public Profissional(string nome, string sobrenome, string email, string passWord)
+        {
+            Nome = nome;
+            Sobrenome = sobrenome;
+            Email = email;
+            PassWord = passWord;
+        }
+
         [Key]
         public int Id { get; set; }
         public string Nome { get; private set; }
