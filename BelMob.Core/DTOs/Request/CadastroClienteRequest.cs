@@ -16,6 +16,7 @@ namespace BelMob.Core.DTOs.Request
         public string Email { get; set; }
 
         public string PassWord { get; set; }
+        public TipoEndereco TipoEndereco { get; set; }
 
         public string Rua { get; set; }
 

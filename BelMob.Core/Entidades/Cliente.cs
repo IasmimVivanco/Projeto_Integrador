@@ -10,13 +10,16 @@ namespace BelMob.Core.Entidades
     public class Cliente
     {
         public Cliente() { }
+
         public Cliente(string nome, string sobrenome, string email, string passWord)
         {
             Nome = nome;
             Sobrenome = sobrenome;
             Email = email;
             PassWord = passWord;
+            Enderecos = new List<Endereco>();
         }
+
 
         [Key]
         public int Id { get; set; }
