@@ -23,15 +23,15 @@ namespace BelMob.Core.Servicos
         public void Cadastrar(CadastroAgendamentoRequest agendamento)
         {
             var user = new Agendamento(agendamento.Data, agendamento.TipoDeServico);
-            var cliente = new Cliente(agendamento.Nome, agendamento.Sobrenome, agendamento.Email, agendamento.PassWord);
+            var cliente = new Cliente(agendamento.Nome, agendamento.Email, agendamento.PassWord);
            
             user.AdicionarCliente(cliente);
             
-            _agendamentoRepository.Create(user);
+            _agendamentoRepository.Criar(user);
         }
         public List<AgendamentoResponse> Listar()
         {
-            var list = _agendamentoRepository.GetAll();
+            var list = _agendamentoRepository.Listar();
 
             return list.Select(c => AgendamentoMapper.From(c)).ToList();
         }

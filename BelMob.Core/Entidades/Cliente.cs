@@ -11,12 +11,11 @@ namespace BelMob.Core.Entidades
     {
         public Cliente() { }
 
-        public Cliente(string nome, string sobrenome, string email, string passWord)
+        public Cliente(string nome, string email, string senha)
         {
             Nome = nome;
-            Sobrenome = sobrenome;
             Email = email;
-            PassWord = passWord;
+            Senha = senha;
             Enderecos = new List<Endereco>();
         }
 
@@ -24,10 +23,9 @@ namespace BelMob.Core.Entidades
         [Key]
         public int Id { get; set; }
         public string Nome { get; private set; }
-        public string Sobrenome { get; private set; }
         public string Email { get; private set; }
-        public string PassWord { get; private set; }
-        public IList<Endereco> Enderecos { get; set; }
+        public string Senha { get; private set; }
+        public IList<Endereco> Enderecos { get; private set; }
 
 
         public void AdicionarEndereco(Endereco endereco)

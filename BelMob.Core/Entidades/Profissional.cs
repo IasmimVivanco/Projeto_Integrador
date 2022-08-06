@@ -11,32 +11,29 @@ namespace BelMob.Core.Entidades
     public class Profissional
     {
         public Profissional() { }
-        public Profissional(string nome, string sobrenome, string email, string passWord, string banco, TipoDeConta tipoDeConta, string agencia, string conta)
+        public Profissional(string nome, string email, string senha, string banco, TipoDeConta tipoDeConta, string agencia, string conta)
         {
             Nome = nome;
-            Sobrenome = sobrenome;
             Email = email;
-            PassWord = passWord;
+            Senha = senha;
             Banco = banco;
             TipoDeConta = tipoDeConta;
             Agencia = agencia;
             Conta = conta;
         }
 
-        public Profissional(string nome, string sobrenome, string email, string passWord)
+        public Profissional(string nome, string email, string senha)
         {
             Nome = nome;
-            Sobrenome = sobrenome;
             Email = email;
-            PassWord = passWord;
+            Senha = senha;
         }
 
         [Key]
         public int Id { get; set; }
         public string Nome { get; private set; }
-        public string Sobrenome { get; private set; }
         public string Email { get; private set; }
-        public string PassWord { get; private set; }
+        public string Senha { get; private set; }
         public string Banco { get; private set; }
         public TipoDeConta TipoDeConta { get; private set; }
         public string Agencia { get; private set; }

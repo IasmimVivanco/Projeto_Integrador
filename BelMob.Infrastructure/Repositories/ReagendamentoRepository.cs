@@ -19,13 +19,13 @@ namespace BelMob.Infrastructure.Repositories
             _context = ctx;
         }
 
-        public void Create(Agendamento agendamento)
+        public void Criar(Agendamento agendamento)
         {
             _context.Add(agendamento);
             _context.SaveChanges();
         }
 
-        public List<Agendamento> GetAll()
+        public List<Agendamento> Listar()
         {
             return _context.Agendamentos.Include(i => i.Cliente).Include(i => i.Profissional).ToList();
         }

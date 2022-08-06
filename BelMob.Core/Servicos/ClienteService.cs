@@ -23,18 +23,18 @@ namespace BelMob.Core.Servicos
 
         public void Cadastrar(CadastroClienteRequest cliente)
         {
-            var user = new Cliente(cliente.Nome, cliente.Sobrenome, cliente.Email, cliente.PassWord);
+            var user = new Cliente(cliente.Nome, cliente.Email, cliente.Senha);
 
             var endereco = new Endereco(cliente.Rua, cliente.Cep, cliente.Numero, cliente.Complemento, Enums.TipoEndereco.Residencial, user);
 
             user.AdicionarEndereco(endereco);
 
-            _clienteRepository.Create(user);
+            _clienteRepository.Criar(user);
         }
 
         public List<ClienteResponse> Listar()
         {
-            var list = _clienteRepository.GetAll();
+            var list = _clienteRepository.();
 
             return list.Select(c => ClienteMapper.From(c)).ToList();
         }

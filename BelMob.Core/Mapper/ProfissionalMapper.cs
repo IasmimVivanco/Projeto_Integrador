@@ -14,7 +14,7 @@ namespace BelMob.Core.Mapper
         {
             var dto = new ProfissionalResponse();
             dto.Id = profissional.Id;
-            dto.Name = profissional.Nome;
+            dto.Nome = profissional.Nome;
            
             return dto;
         }

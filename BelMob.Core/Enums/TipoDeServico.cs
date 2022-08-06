@@ -8,7 +8,7 @@ namespace BelMob.Core.Enums
 {
     public enum TipoDeServico
     {
-        Maos = 1,
+        Mao = 1,
         Pe = 2,
         PeEMao = 3,
     }

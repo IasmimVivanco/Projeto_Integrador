@@ -19,13 +19,13 @@ namespace BelMob.Infrastructure.Repositories
             _context = ctx;
         }
 
-        public void Create(Cliente cliente)
+        public void Criar(Cliente cliente)
         {
             _context.Add(cliente);
             _context.SaveChanges();
         }
 
-        public List<Cliente> GetAll()
+        public List<Cliente> Listar()
         {
             return _context.Clientes.Include(i => i.Enderecos).ToList();
         }

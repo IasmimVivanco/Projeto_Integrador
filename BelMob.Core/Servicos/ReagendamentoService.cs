@@ -22,18 +22,18 @@ namespace BelMob.Core.Servicos
 
         public void Cadastrar(CadastroReagendamentoRequest reagendamento)
         {
-            var user = new Agendamento(reagendamento.Data, reagendamento.TipoDeServico);
-            var cliente = new Cliente(reagendamento.Nome, reagendamento.Sobrenome, reagendamento.Email, reagendamento.PassWord);
-            var profissional = new Profissional(reagendamento.Nome, reagendamento.Sobrenome, reagendamento.Email, reagendamento.PassWord);
+            var agendamento = new Agendamento(reagendamento.Data, reagendamento.TipoDeServico);
+            var cliente = new Cliente(reagendamento.Nome, reagendamento.Email, reagendamento.PassWord);
+            var profissional = new Profissional(reagendamento.Nome, reagendamento.Email, reagendamento.PassWord);
 
-            user.AdicionarCliente(cliente);
-            user.AdicionarProfissional(profissional);
+            agendamento.AdicionarCliente(cliente);
+            agendamento.AdicionarProfissional(profissional);
 
-            _reagendamentoRepository.Create(user);
+            _reagendamentoRepository.Criar(agendamento);
         }
         public List<ReagendamentoResponse> Listar()
         {
-            var list = _reagendamentoRepository.GetAll();
+            var list = _reagendamentoRepository.Listar();
 
             return list.Select(c => ReagendamentoMapper.From(c)).ToList();
         }

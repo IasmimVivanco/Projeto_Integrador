@@ -19,13 +19,13 @@ namespace BelMob.Infrastructure.Repositories
             _context = ctx;
         }
 
-        public void Create(Profissional profissional)
+        public void Criar(Profissional profissional)
         {
             _context.Add(profissional);
             _context.SaveChanges();
         }
 
-        public List<Profissional> GetAll()
+        public List<Profissional> Listar()
         {
             return _context.Profissionais.ToList();
         }

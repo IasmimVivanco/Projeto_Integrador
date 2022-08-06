@@ -10,12 +10,8 @@ namespace BelMob.Core.DTOs.Request
     public class CadastroProfissionalRequest
     {
         public string Nome { get; set; }
-
-        public string Sobrenome { get; set; }
-
         public string Email { get; set; }
-
-        public string PassWord { get; set; }
+        public string Senha { get; set; }
         public string Banco { get; set; }
         public TipoDeConta TipoDeConta { get; set; }
         public string Agencia { get; set; }
