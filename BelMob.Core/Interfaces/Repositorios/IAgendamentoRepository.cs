@@ -9,7 +9,9 @@ namespace BelMob.Core.Interfaces.Repositorios
 {
     public interface IAgendamentoRepository
     {
-        void Criar(Agendamento agendamento);
+        bool Criar(Agendamento agendamento);
+
+        Agendamento BuscarPorId(int id);
 
         List<Agendamento> Listar();
     }

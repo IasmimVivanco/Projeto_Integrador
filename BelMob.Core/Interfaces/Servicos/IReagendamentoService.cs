@@ -10,7 +10,7 @@ namespace BelMob.Core.Interfaces.Servicos
 {
     public interface IReagendamentoService
     {
-        void Cadastrar(CadastroReagendamentoRequest reagendamento);
+        boo Cadastrar(CadastroReagendamentoRequest reagendamento);
 
         List<ReagendamentoResponse> Listar();
     }

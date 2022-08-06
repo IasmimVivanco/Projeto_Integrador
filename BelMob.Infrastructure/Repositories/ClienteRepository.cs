@@ -19,15 +19,20 @@ namespace BelMob.Infrastructure.Repositories
             _context = ctx;
         }
 
-        public void Criar(Cliente cliente)
+        public bool Criar(Cliente cliente)
         {
             _context.Add(cliente);
-            _context.SaveChanges();
+            return _context.SaveChanges() > 0;
+        }
+
+        public Cliente BuscarPorId(int id)
+        {
+            return _context.Clientes.Include(c => c.Enderecos).FirstOrDefault(a => a.Id == id);
         }
 
         public List<Cliente> Listar()
         {
-            return _context.Clientes.Include(i => i.Enderecos).ToList();
+            return _context.Clientes.Include(c => c.Enderecos).ToList();
         }
     }
 }

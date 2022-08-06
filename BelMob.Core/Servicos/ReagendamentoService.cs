@@ -14,28 +14,29 @@ namespace BelMob.Core.Servicos
 {
     public class ReagendamentoService : IReagendamentoService
     {
-        private IReagendamentoRepository _reagendamentoRepository;
-        public ReagendamentoService(IReagendamentoRepository reagendamentoRepository)
+        private IAgendamentoRepository agendamentoRepository;
+
+        public ReagendamentoService(IAgendamentoRepository agendamentoRepository)
         {
-            _reagendamentoRepository = reagendamentoRepository;
+            this.agendamentoRepository = agendamentoRepository;
         }
 
-        public void Cadastrar(CadastroReagendamentoRequest reagendamento)
+        public bool Cadastrar(CadastroReagendamentoRequest reagendamento)
         {
-            var agendamento = new Agendamento(reagendamento.Data, reagendamento.TipoDeServico);
-            var cliente = new Cliente(reagendamento.Nome, reagendamento.Email, reagendamento.PassWord);
-            var profissional = new Profissional(reagendamento.Nome, reagendamento.Email, reagendamento.PassWord);
+            var agendamentoAnterior = agendamentoRepository.BuscarPorId(reagendamento.IdAgendamentoAnterior);
 
-            agendamento.AdicionarCliente(cliente);
-            agendamento.AdicionarProfissional(profissional);
+            var agendamento = reagendamento.Map();
+            agendamento.AdicionarCliente(agendamentoAnterior.Cliente);
+            agendamento.AdicionarProfissional(agendamentoAnterior.Profissional);
 
-            _reagendamentoRepository.Criar(agendamento);
+            return agendamentoRepository.Criar(agendamento);
         }
+
         public List<ReagendamentoResponse> Listar()
         {
-            var list = _reagendamentoRepository.Listar();
+            var list = agendamentoRepository.Listar();
 
-            return list.Select(c => ReagendamentoMapper.From(c)).ToList();
+            return list.Select(c => c.Map()).ToList();
         }
     }
 }

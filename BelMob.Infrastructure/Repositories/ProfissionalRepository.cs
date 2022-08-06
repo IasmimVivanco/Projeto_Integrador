@@ -22,7 +22,12 @@ namespace BelMob.Infrastructure.Repositories
         public void Criar(Profissional profissional)
         {
             _context.Add(profissional);
-            _context.SaveChanges();
+            return _context.SaveChanges() > 0;
+        }
+
+        public Profissional BuscarPorId(int id)
+        {
+            return _context.Profissionais.FirstOrDefault(a => a.Id == id);
         }
 
         public List<Profissional> Listar()

@@ -10,7 +10,7 @@ namespace BelMob.Core.Interfaces.Servicos
 {
     public interface IAgendamentoService
     {
-        void Cadastrar(CadastroAgendamentoRequest agendamento);
+        bool Cadastrar(CadastroAgendamentoRequest agendamento);
 
         List<AgendamentoResponse> Listar();
     }

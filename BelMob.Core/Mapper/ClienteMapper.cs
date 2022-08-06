@@ -1,4 +1,5 @@
 ﻿using BelMob.Core.DTOs.Response;
+using BelMob.Core.DTOs.Request;
 using BelMob.Core.Entidades;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace BelMob.Core.Mapper
 {
     public static class ClienteMapper
     {
-        public static ClienteResponse From(Cliente cliente)
+        public static ClienteResponse Map(this Cliente cliente)
         {
             var dto = new ClienteResponse();
             dto.Id = cliente.Id;
@@ -21,6 +22,17 @@ namespace BelMob.Core.Mapper
 
 
             return dto;
+
+        }
+
+        public static Cliente Map(this CadastroClienteRequest clienteRequest)
+        {
+            var cliente = new Cliente(clienteRequest.Nome, clienteRequest.Email, clienteRequest.Senha);
+            var endereco = new Endereco(clienteRequest.Rua, clienteRequest.Cep, clienteRequest.Numero, clienteRequest.Complemento, Enums.TipoEndereco.Residencial, cliente);
+
+            cliente.AdicionarEndereco(endereco);
+
+            return cliente;
 
         }
     }

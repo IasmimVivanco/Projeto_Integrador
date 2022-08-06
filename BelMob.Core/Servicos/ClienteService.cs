@@ -21,22 +21,18 @@ namespace BelMob.Core.Servicos
             _clienteRepository = clienteRepository;
         }
 
-        public void Cadastrar(CadastroClienteRequest cliente)
+        public bool Cadastrar(CadastroClienteRequest clienteRequest)
         {
-            var user = new Cliente(cliente.Nome, cliente.Email, cliente.Senha);
+            var cliente = clienteRequest.Map();
 
-            var endereco = new Endereco(cliente.Rua, cliente.Cep, cliente.Numero, cliente.Complemento, Enums.TipoEndereco.Residencial, user);
-
-            user.AdicionarEndereco(endereco);
-
-            _clienteRepository.Criar(user);
+            return _clienteRepository.Criar(cliente);
         }
 
         public List<ClienteResponse> Listar()
         {
-            var list = _clienteRepository.();
+            var list = _clienteRepository.Listar();
 
-            return list.Select(c => ClienteMapper.From(c)).ToList();
+            return list.Select(c => c.Map()).ToList();
         }
     }
 }

@@ -11,14 +11,9 @@ namespace BelMob.Core.DTOs.Request
     public class CadastroReagendamentoRequest
     {
         public DateTime Data { get; private set; }
+
         public TipoDeServico TipoDeServico { get; private set; }
-        public string Nome { get; set; }
-
-        public string Sobrenome { get; set; }
-
-        public string Email { get; set; }
-
-        public string PassWord { get; set; }
-
+        
+        public int IdAgendamentoAnterior { get; private set; }
     }
 }

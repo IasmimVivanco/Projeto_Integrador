@@ -15,20 +15,19 @@ namespace BelMob.Core.Servicos
     public class AgendamentoService : IAgendamentoService
     {
         private IAgendamentoRepository _agendamentoRepository;
+
         public AgendamentoService(IAgendamentoRepository agendamentoRepository)
         {
             _agendamentoRepository = agendamentoRepository;
         }
 
-        public void Cadastrar(CadastroAgendamentoRequest agendamento)
+        public bool Cadastrar(CadastroAgendamentoRequest agendamentoRequest)
         {
-            var user = new Agendamento(agendamento.Data, agendamento.TipoDeServico);
-            var cliente = new Cliente(agendamento.Nome, agendamento.Email, agendamento.PassWord);
-           
-            user.AdicionarCliente(cliente);
-            
-            _agendamentoRepository.Criar(user);
+            var agendamento = agendamentoRequest.Map();
+
+            return _agendamentoRepository.Criar(agendamento);
         }
+
         public List<AgendamentoResponse> Listar()
         {
             var list = _agendamentoRepository.Listar();

@@ -10,7 +10,7 @@ namespace BelMob.Core.Interfaces.Servicos
 {
     public interface IClienteService
     {
-        void Cadastrar(CadastroClienteRequest cliente);
+        bool Cadastrar(CadastroClienteRequest cliente);
 
         List<ClienteResponse> Listar();
     }

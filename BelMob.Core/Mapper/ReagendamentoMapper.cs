@@ -1,4 +1,5 @@
 ﻿using BelMob.Core.DTOs.Response;
+using BelMob.Core.DTOs.Request;
 using BelMob.Core.Entidades;
 using System;
 using System.Collections.Generic;
@@ -8,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace BelMob.Core.Mapper
 {
-    internal class ReagendamentoMapper
+    internal static class ReagendamentoMapper
     {
-        public static ReagendamentoResponse From(Agendamento reagendamento)
+        public static ReagendamentoResponse Map(this Agendamento reagendamento)
         {
             var dto = new ReagendamentoResponse();
             dto.Id = reagendamento.Id;
@@ -24,7 +25,11 @@ namespace BelMob.Core.Mapper
                 dto.ProfissionalResponse = ProfissionalMapper.From(reagendamento.Profissional);
 
             return dto;
+        }
 
+        public static Agendamento Map(this CadastroReagendamentoRequest reagendamentoRequest)
+        {
+            return new Agendamento(reagendamentoRequest.Data, reagendamentoRequest.TipoDeServico);
         }
     }
 }

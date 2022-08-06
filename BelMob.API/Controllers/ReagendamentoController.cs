@@ -19,8 +19,9 @@ namespace BelMob.API.Controllers
         [HttpPost]
         public IActionResult Create([FromBody] CadastroReagendamentoRequest reagendamento)
         {
-            _reagendamentoService.Cadastrar(reagendamento);
-            return Ok();
+            var result = _reagendamentoService.Cadastrar(reagendamento);
+
+            return result ? Ok() : BadRquest();
         }
 
         [HttpGet]
