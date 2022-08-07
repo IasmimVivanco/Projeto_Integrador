@@ -1,4 +1,5 @@
-﻿using BelMob.Core.Entidades;
+﻿using BelMob.Core.DTOs.Request;
+using BelMob.Core.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,9 @@ namespace BelMob.Core.Interfaces.Repositorios
     public interface IAgendamentoRepository
     {
         bool Criar(Agendamento agendamento);
-
         Agendamento BuscarPorId(int id);
-
         List<Agendamento> Listar();
+        List<Agendamento> ListarDisponiveis();
+        Agendamento AceitarAgendamento(CadastroAgendamentoRequest agendamentoRequest, int id, int IdCliente, int IdProfissional);
     }
 }

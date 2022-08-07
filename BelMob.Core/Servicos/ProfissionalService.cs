@@ -27,11 +27,25 @@ namespace BelMob.Core.Servicos
 
             _profissionalRepository.Criar(user);
         }
+        public Profissional BuscarPorId(int Id)
+        {
+            return _profissionalRepository.BuscarPorId(Id);
+
+        }
         public List<ProfissionalResponse> Listar()
         {
             var list = _profissionalRepository.Listar();
 
             return list.Select(c => ProfissionalMapper.From(c)).ToList();
+        }
+        public Profissional AlterarDados(int Id, CadastroProfissionalRequest profissionalRequest)
+        {
+            return _profissionalRepository.AlterarDados(profissionalRequest, Id);
+        }
+
+        public Profissional Deletar(int id)
+        {
+            return _profissionalRepository.Deletar(id);
         }
     }
 }

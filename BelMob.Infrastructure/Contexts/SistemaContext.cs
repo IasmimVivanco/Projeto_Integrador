@@ -14,7 +14,6 @@ namespace BelMob.Infrastructure.Contexts
         {
 
         }
-
         public DbSet<Cliente>? Clientes { get; set; }
         public DbSet<Profissional>? Profissionais { get; set; }
         public DbSet<Endereco>? Enderecos { get; set; }

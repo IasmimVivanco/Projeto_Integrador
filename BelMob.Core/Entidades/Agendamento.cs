@@ -25,11 +25,11 @@ namespace BelMob.Core.Entidades
         }
 
         [Key]
-        public int Id { get; private set; }
-        public DateTime Data { get ; private set; }
-        public TipoDeServico TipoDeServico { get; private set; }
-        public Cliente Cliente { get; private set; }
-        public Profissional? Profissional { get; private set; }
+        public int Id { get; set; }
+        public DateTime Data { get ; set; }
+        public TipoDeServico TipoDeServico { get; set; }
+        public Cliente Cliente { get; set; }
+        public Profissional? Profissional { get; set; }
 
         public void AdicionarCliente(Cliente cliente)
         {

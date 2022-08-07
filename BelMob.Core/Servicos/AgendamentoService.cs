@@ -8,31 +8,48 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading.Tasks; 
 
 namespace BelMob.Core.Servicos
 {
     public class AgendamentoService : IAgendamentoService
     {
         private IAgendamentoRepository _agendamentoRepository;
+        private IClienteRepository _clienteRepository;
 
-        public AgendamentoService(IAgendamentoRepository agendamentoRepository)
+        public AgendamentoService(IAgendamentoRepository agendamentoRepository, IClienteRepository clienteRepository)
         {
             _agendamentoRepository = agendamentoRepository;
+            _clienteRepository = clienteRepository;
+        }
+
+        public Agendamento BuscarPorId(int Id)
+        {
+            return _agendamentoRepository.BuscarPorId(Id);
         }
 
         public bool Cadastrar(CadastroAgendamentoRequest agendamentoRequest)
         {
+            var cliente = _clienteRepository.BuscarPorId(agendamentoRequest.IdCliente);
+
             var agendamento = agendamentoRequest.Map();
 
+            agendamento.AdicionarCliente(cliente);
+ 
             return _agendamentoRepository.Criar(agendamento);
         }
-
         public List<AgendamentoResponse> Listar()
         {
             var list = _agendamentoRepository.Listar();
 
-            return list.Select(c => AgendamentoMapper.From(c)).ToList();
+            return list.Select(c => AgendamentoMapper.Map(c)).ToList();
+        }
+
+        public List<AgendamentoResponse> ListarDisponiveis()
+        {
+            var list = _agendamentoRepository.ListarDisponiveis();
+           
+            return list.Select(c=> AgendamentoMapper.Map(c)).ToList();
         }
     }
 }

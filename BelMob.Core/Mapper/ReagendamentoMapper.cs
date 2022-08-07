@@ -19,7 +19,7 @@ namespace BelMob.Core.Mapper
             dto.TipoDeServico = reagendamento.TipoDeServico;
 
             if (reagendamento.Cliente != null)
-                dto.ClienteResponse = ClienteMapper.From(reagendamento.Cliente);
+                dto.ClienteResponse = ClienteMapper.Map(reagendamento.Cliente);
             
             if (reagendamento.Profissional != null)
                 dto.ProfissionalResponse = ProfissionalMapper.From(reagendamento.Profissional);

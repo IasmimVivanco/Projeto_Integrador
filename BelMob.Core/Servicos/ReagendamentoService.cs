@@ -31,12 +31,16 @@ namespace BelMob.Core.Servicos
 
             return agendamentoRepository.Criar(agendamento);
         }
+        public Agendamento BuscarPorId(int Id)
+        {
+            return agendamentoRepository.BuscarPorId(Id);
 
+        }
         public List<ReagendamentoResponse> Listar()
         {
             var list = agendamentoRepository.Listar();
-
-            return list.Select(c => c.Map()).ToList();
+            return list.Select(c => ReagendamentoMapper.Map(c)).ToList();
         }
+
     }
 }

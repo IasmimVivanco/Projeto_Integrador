@@ -5,13 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using BelMob.Core.DTOs.Request;
 using BelMob.Core.DTOs.Response;
+using BelMob.Core.Entidades;
 
 namespace BelMob.Core.Interfaces.Servicos
 {
     public interface IReagendamentoService
     {
-        boo Cadastrar(CadastroReagendamentoRequest reagendamento);
-
+        bool Cadastrar(CadastroReagendamentoRequest reagendamento);
+        Agendamento BuscarPorId(int Id);
         List<ReagendamentoResponse> Listar();
     }
 }

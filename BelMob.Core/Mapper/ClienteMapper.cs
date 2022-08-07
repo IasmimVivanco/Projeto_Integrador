@@ -16,9 +16,7 @@ namespace BelMob.Core.Mapper
             var dto = new ClienteResponse();
             dto.Id = cliente.Id;
             dto.Nome = cliente.Nome;
-
-            if (cliente.Enderecos != null)
-                dto.Enderecos = cliente.Enderecos.Select(c => EnderecoMapper.From(c)).ToList();
+            dto.Enderecos = cliente.Enderecos.Select(c => EnderecoMapper.From(c)).ToList();
 
 
             return dto;
@@ -28,7 +26,7 @@ namespace BelMob.Core.Mapper
         public static Cliente Map(this CadastroClienteRequest clienteRequest)
         {
             var cliente = new Cliente(clienteRequest.Nome, clienteRequest.Email, clienteRequest.Senha);
-            var endereco = new Endereco(clienteRequest.Rua, clienteRequest.Cep, clienteRequest.Numero, clienteRequest.Complemento, Enums.TipoEndereco.Residencial, cliente);
+            var endereco = new Endereco(clienteRequest.Rua, clienteRequest.Cep, clienteRequest.Numero, clienteRequest.Complemento,Enums.TipoEndereco.Residencial);
 
             cliente.AdicionarEndereco(endereco);
 

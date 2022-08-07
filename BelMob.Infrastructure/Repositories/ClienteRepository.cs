@@ -1,4 +1,6 @@
-﻿using BelMob.Core.Entidades;
+﻿using BelMob.Core.DTOs.Request;
+using BelMob.Core.Entidades;
+using BelMob.Core.Enums;
 using BelMob.Core.Interfaces.Repositorios;
 using BelMob.Infrastructure.Contexts;
 using Microsoft.EntityFrameworkCore;
@@ -33,6 +35,31 @@ namespace BelMob.Infrastructure.Repositories
         public List<Cliente> Listar()
         {
             return _context.Clientes.Include(c => c.Enderecos).ToList();
+        }
+
+        public Cliente AlterarDados(CadastroClienteRequest clienteRequest, int id)
+        {
+            var result = _context.Clientes.Find(id);
+            result.Nome = clienteRequest.Nome;
+            result.Email = clienteRequest.Email;
+            result.Senha = clienteRequest.Senha;
+            var endereco = _context.Enderecos.Find(id);
+            endereco.Rua = clienteRequest.Rua;
+            endereco.Numero = clienteRequest.Numero;
+            endereco.Cep = clienteRequest.Cep;
+            endereco.Complemento = clienteRequest.Complemento;
+            endereco.Tipo = clienteRequest.Tipo;
+            _context.Clientes.Include(c => c.Enderecos);
+            _context.SaveChanges();
+            return result;
+        }
+        public Cliente Deletar(int id)
+        {
+            var cliente = _context.Clientes.Find(id);
+            _context.Remove(cliente);
+            _context.Clientes.Include(c => c.Enderecos);
+            _context.SaveChanges();
+            return cliente;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using BelMob.Core.Entidades;
+﻿using BelMob.Core.DTOs.Request;
+using BelMob.Core.Entidades;
 using BelMob.Core.Interfaces.Repositorios;
 using BelMob.Infrastructure.Contexts;
 using Microsoft.EntityFrameworkCore;
@@ -19,7 +20,7 @@ namespace BelMob.Infrastructure.Repositories
             _context = ctx;
         }
 
-        public void Criar(Profissional profissional)
+        public bool Criar(Profissional profissional)
         {
             _context.Add(profissional);
             return _context.SaveChanges() > 0;
@@ -33,6 +34,26 @@ namespace BelMob.Infrastructure.Repositories
         public List<Profissional> Listar()
         {
             return _context.Profissionais.ToList();
+        }
+        public Profissional AlterarDados(CadastroProfissionalRequest profissionalRequest, int id)
+        {
+            var result = _context.Profissionais.Find(id);
+            result.Nome = profissionalRequest.Nome;
+            result.Email = profissionalRequest.Email;
+            result.Senha = profissionalRequest.Senha;
+            result.Banco = profissionalRequest.Banco;
+            result.Conta = profissionalRequest.Conta;
+            result.TipoDeConta = profissionalRequest.TipoDeConta;
+            result.Agencia = profissionalRequest.Agencia;
+            _context.SaveChanges();
+            return result;
+        }
+        public Profissional Deletar(int id)
+        {
+            var profissional = _context.Profissionais.Find(id);
+            _context.Remove(profissional);
+            _context.SaveChanges();
+            return profissional;
         }
     }
 }

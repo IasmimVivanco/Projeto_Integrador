@@ -23,7 +23,6 @@ namespace BelMob.API.DependencyInjection
             services.AddTransient<IAgendamentoRepository, AgendamentoRepository>();
 
             services.AddTransient<IReagendamentoService, ReagendamentoService>();
-            services.AddTransient<IReagendamentoRepository, ReagendamentoRepository>();
 
 
             return services;

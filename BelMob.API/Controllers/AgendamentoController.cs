@@ -5,11 +5,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BelMob.API.Controllers
 {
-    [Route("[controller]")]
+    [Route("Api/[controller]")]
     [ApiController]
     public class AgendamentoController : ControllerBase
     {
         public IAgendamentoService _agendamentoService;
+        public IClienteService _clienteService;
 
         public AgendamentoController(IAgendamentoService agendamentoService)
         {
@@ -27,6 +28,12 @@ namespace BelMob.API.Controllers
         public ActionResult<List<AgendamentoResponse>> GetAll()
         {
             return Ok(_agendamentoService.Listar());
+        }
+        
+        [HttpGet("{Id}")]
+        public ActionResult<AgendamentoResponse> BuscarPelaId(int Id)
+        {
+            return Ok(_agendamentoService.BuscarPorId(Id));
         }
     }
 }

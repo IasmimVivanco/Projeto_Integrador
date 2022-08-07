@@ -22,10 +22,10 @@ namespace BelMob.Core.Entidades
 
         [Key]
         public int Id { get; set; }
-        public string Nome { get; private set; }
-        public string Email { get; private set; }
-        public string Senha { get; private set; }
-        public IList<Endereco> Enderecos { get; private set; }
+        public string Nome { get; set; }
+        public string Email { get; set; }
+        public string Senha { get; set; }
+        public IList<Endereco> Enderecos { get; set; }
 
 
         public void AdicionarEndereco(Endereco endereco)

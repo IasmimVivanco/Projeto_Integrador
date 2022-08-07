@@ -19,19 +19,14 @@ namespace BelMob.Core.Mapper
             dto.TipoDeServico = agendamento.TipoDeServico;
 
             if (agendamento.Cliente != null)
-                dto.ClienteResponse = ClienteMapper.From(agendamento.Cliente);
+                dto.ClienteResponse = ClienteMapper.Map(agendamento.Cliente);
 
             return dto;
         }
-
-        public static Agendamento Map(this CadastroAgendamentoRequest agendamento)
+        public static Agendamento Map(this CadastroAgendamentoRequest agendamentoRequest)
         {
-            var agendamento = new Agendamento(agendamentoRequest.Data, agendamentoRequest.TipoDeServico);
-            var cliente = new Cliente(agendamentoRequest.Nome, agendamentoRequest.Email, agendamentoRequest.PassWord);
 
-            agendamento.AdicionarCliente(cliente);
-
-            return agendamento;
+            return new Agendamento(agendamentoRequest.Data, agendamentoRequest.TipoDeServico);
         }
     }
 }

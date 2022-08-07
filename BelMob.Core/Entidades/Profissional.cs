@@ -31,12 +31,12 @@ namespace BelMob.Core.Entidades
 
         [Key]
         public int Id { get; set; }
-        public string Nome { get; private set; }
-        public string Email { get; private set; }
-        public string Senha { get; private set; }
-        public string Banco { get; private set; }
-        public TipoDeConta TipoDeConta { get; private set; }
-        public string Agencia { get; private set; }
-        public string Conta { get; private set; }
+        public string Nome { get; set; }
+        public string Email { get; set; }
+        public string Senha { get; set; }
+        public string Banco { get; set; }
+        public TipoDeConta TipoDeConta { get; set; }
+        public string Agencia { get; set; }
+        public string Conta { get; set; }
     }
 }
