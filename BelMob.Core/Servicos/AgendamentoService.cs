@@ -8,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks; 
+using System.Threading.Tasks;
 
 namespace BelMob.Core.Servicos
 {
@@ -23,6 +23,11 @@ namespace BelMob.Core.Servicos
             _clienteRepository = clienteRepository;
         }
 
+        public Agendamento AceitarAgendamento(AceitarAgendamentoRequest aceitarAgendamento)
+        {
+            return _agendamentoRepository.AceitarAgendamento(aceitarAgendamento);
+        }
+
         public Agendamento BuscarPorId(int Id)
         {
             return _agendamentoRepository.BuscarPorId(Id);
@@ -35,7 +40,7 @@ namespace BelMob.Core.Servicos
             var agendamento = agendamentoRequest.Map();
 
             agendamento.AdicionarCliente(cliente);
- 
+
             return _agendamentoRepository.Criar(agendamento);
         }
         public List<AgendamentoResponse> Listar()
@@ -48,8 +53,8 @@ namespace BelMob.Core.Servicos
         public List<AgendamentoResponse> ListarDisponiveis()
         {
             var list = _agendamentoRepository.ListarDisponiveis();
-           
-            return list.Select(c=> AgendamentoMapper.Map(c)).ToList();
+
+            return list.Select(c => AgendamentoMapper.Map(c)).ToList();
         }
     }
 }

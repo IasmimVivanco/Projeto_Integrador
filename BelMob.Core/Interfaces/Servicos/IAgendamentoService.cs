@@ -16,5 +16,6 @@ namespace BelMob.Core.Interfaces.Servicos
 
         List<AgendamentoResponse> Listar();
         List<AgendamentoResponse> ListarDisponiveis();
+        Agendamento AceitarAgendamento(AceitarAgendamentoRequest aceitarAgendamento);
     }
 }

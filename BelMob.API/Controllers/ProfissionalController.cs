@@ -31,7 +31,7 @@ namespace BelMob.API.Controllers
         {
             return Ok(_profissionalService.Listar());
         }
-        
+
         [HttpGet("{Id}")]
         public ActionResult<ProfissionalResponse> BuscarPelaId(int Id)
         {
@@ -54,6 +54,14 @@ namespace BelMob.API.Controllers
 
             return Ok(_profissionalService.Deletar(Id));
         }
+        [HttpPut("{IdProfissional}/agendamentos/{IdAgendamento}")]
+        public ActionResult<AgendamentoResponse> AceitarAgendamento(int IdProfissional, int IdAgendamento)
+        {
+            var aceitarAgendamento = new AceitarAgendamentoRequest(IdAgendamento, IdProfissional);
+            return Ok(_agendamentoService.AceitarAgendamento(aceitarAgendamento));
+
+        }
+
 
 
     }

@@ -55,9 +55,8 @@ namespace BelMob.Infrastructure.Repositories
         }
         public Cliente Deletar(int id)
         {
-            var cliente = _context.Clientes.Find(id);
+            var cliente = _context.Clientes.Include(c => c.Enderecos).FirstOrDefault(a => a.Id == id);
             _context.Remove(cliente);
-            _context.Clientes.Include(c => c.Enderecos);
             _context.SaveChanges();
             return cliente;
         }

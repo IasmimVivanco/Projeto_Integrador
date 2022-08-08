@@ -14,6 +14,6 @@ namespace BelMob.Core.Interfaces.Repositorios
         Agendamento BuscarPorId(int id);
         List<Agendamento> Listar();
         List<Agendamento> ListarDisponiveis();
-        Agendamento AceitarAgendamento(CadastroAgendamentoRequest agendamentoRequest, int id, int IdCliente, int IdProfissional);
+        Agendamento AceitarAgendamento(AceitarAgendamentoRequest aceitarAgendamento);
     }
 }
